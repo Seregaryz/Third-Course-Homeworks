@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
             val sharedPref = this.getPreferences(Context.MODE_PRIVATE)
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                with(sharedPref?.edit()) {
+                sharedPref?.edit()?.let { editor ->
                     Log.d("Creating", "Creating")
-                    this?.putInt(getString(R.string.theme_preferences_key), AppCompatDelegate.MODE_NIGHT_NO)
-                    this?.commit()
+                    editor?.putInt(getString(R.string.theme_preferences_key), AppCompatDelegate.MODE_NIGHT_NO)
+                    editor?.commit()
                 }
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

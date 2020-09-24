@@ -2,7 +2,7 @@
 <resources>
     <style name="Theme.ThirdCourse.Base" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#5A751A</item>
+        <item name="colorPrimary">#751A37</item>
         <item name="colorPrimaryDark">#465511</item>
         <item name="colorAccent">#007685</item>
     </style>

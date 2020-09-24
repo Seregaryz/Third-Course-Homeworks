@@ -11,7 +11,7 @@
         android:id="@+id/outputs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity=""
         android:layout_margin="5dp"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity=""
-            android:background="@color/colorPrimary"
+            android:background="?attr/colorPrimary"
             android:textColor="@color/colorPrimaryText"
             android:text="@string/btn_change_theme" />
 

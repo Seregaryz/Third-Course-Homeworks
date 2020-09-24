@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ThirdCourseHomeworks</string>
+    <string name="positive_button">ok</string>
+    <string name="payments_show_name">Successfully received payment data for %s! \n
+\n
+TransactionCode: %s</string>
 </resources>

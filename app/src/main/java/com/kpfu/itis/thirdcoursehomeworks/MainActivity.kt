@@ -13,11 +13,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var currentOperator = ""
+    val service = CalculationService()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         buttonEqual.setOnClickListener {
-            val answer = calculateAnswer()
+            val answer = service.calculateAnswer(input_box.text.toString(), currentOperator)
             if (answer != "error") result_box.text = answer
         }
         buttonClear.setOnClickListener {
@@ -86,19 +88,6 @@ class MainActivity : AppCompatActivity() {
             addToInput(operation)
             currentOperator = operation
         }
-    }
-
-    private fun calculateAnswer(): String {
-        if (input_box.text.toString().split(currentOperator).size == 2) {
-            val first = input_box.text.toString().split(currentOperator)[0].toDouble()
-            val second = input_box.text.toString().split(currentOperator)[1].toDouble()
-            return when (currentOperator) {
-                "+" -> (first + second).toString()
-                "-" -> (first - second).toString()
-                "x" -> (first * second).toString()
-                else -> (first / second).toString()
-            }
-        } else return "error"
     }
 
 }

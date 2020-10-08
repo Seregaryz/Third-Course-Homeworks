@@ -20,7 +20,7 @@ class CountSideEffect(
         state: StateAccessor<MainActivityState>
     ): Observable<out MainActivityAction> {
         return actions.ofType<MainActivityAction.CountWrote>()
-            .switchMap { action ->
+            .switchMap{ action ->
                 calculateAndUpdate(action.wroteCount.toInt(), action.index)
                     .map<MainActivityAction> { MainActivityAction.CountCalculationFinished(it)}
                     .toObservable()

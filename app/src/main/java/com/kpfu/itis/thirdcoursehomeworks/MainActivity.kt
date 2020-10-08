@@ -28,13 +28,19 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::render)
         firstNumber.doAfterTextChanged { input ->
-            calculateValue(input.toString(), FIRST_COUNT_INDEX)
+            if(secondNumber.text.toString() != "" || thirdNumber.text.toString() != "") {
+                calculateValue(input.toString(), FIRST_COUNT_INDEX)
+            }
         }
-        secondNumber.doAfterTextChanged{ input ->
-            calculateValue(input.toString(), SECOND_COUNT_INDEX)
+        secondNumber.doAfterTextChanged { input ->
+            if (firstNumber.text.toString() != "" || thirdNumber.text.toString() != ""){
+                calculateValue(input.toString(), SECOND_COUNT_INDEX)
+            }
         }
         thirdNumber.doAfterTextChanged { input ->
-            calculateValue(input.toString(), THIRD_COUNT_INDEX)
+            if(firstNumber.text.toString() != "" || secondNumber.text.toString() != "") {
+                calculateValue(input.toString(), THIRD_COUNT_INDEX)
+            }
         }
     }
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ThirdCourseHomeworks</string>
+    <string name="et_FirstCount">Edit first val</string>
+    <string name="et_SecondCount">Edit second val</string>
+    <string name="et_ThirdCount">Edit third val</string>
+    <string name="tv_Equality">=</string>
+    <string name="tv_Plus">+</string>
 </resources>

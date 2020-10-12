@@ -1,5 +1,7 @@
 package com.kpfu.itis.thirdcoursehomeworks.service
 
+import com.kpfu.itis.thirdcoursehomeworks.service.Constans.FIRST_INDEX
+import com.kpfu.itis.thirdcoursehomeworks.service.Constans.SECOND_INDEX
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 
@@ -11,53 +13,48 @@ class CalculationService {
         currentCount: Int,
         currentIndex: Int
     ): Single<MutableList<String>> {
-        val res = mutableListOf("", "", "")
+        var res = mutableListOf("", "", "")
+        if(currentIndex == -1){
+            res[wroteIndex] = wroteCount.toString()
+            return Single.just(res)
+        }
         when (wroteIndex) {
-            1 -> {
-                return if (currentIndex == 2) {
-                    res[0] = wroteCount.toString()
-                    res[1] = currentCount.toString()
-                    res[2] = (wroteCount + currentCount).toString()
+             FIRST_INDEX -> {
+                return if (currentIndex == SECOND_INDEX) {
+                    res = setCalculatedVal(wroteCount, currentCount, wroteCount + currentCount)
                     Single.just(res)
-                        .delay(3, TimeUnit.SECONDS)
+                        .delay(2, TimeUnit.SECONDS)
                 } else {
-                    res[0] = wroteCount.toString()
-                    res[1] = (currentCount - wroteCount).toString()
-                    res[2] = currentCount.toString()
+                    res = setCalculatedVal(wroteCount, currentCount - wroteCount, currentCount)
                     Single.just(res)
-                        .delay(3, TimeUnit.SECONDS)
+                        .delay(2, TimeUnit.SECONDS)
                 }
             }
-            2 -> {
-                return if (currentIndex == 1) {
-                    res[0] = currentCount.toString()
-                    res[1] = wroteCount.toString()
-                    res[2] = (wroteCount + currentCount).toString()
+            SECOND_INDEX -> {
+                return if (currentIndex == FIRST_INDEX) {
+                    res = setCalculatedVal(currentCount, wroteCount, wroteCount + currentCount)
                     Single.just(res)
-                        .delay(3, TimeUnit.SECONDS)
+                        .delay(2, TimeUnit.SECONDS)
                 } else {
-                    res[0] = (currentCount - wroteCount).toString()
-                    res[1] = wroteCount.toString()
-                    res[2] = currentCount.toString()
+                    res = setCalculatedVal(currentCount - wroteCount, wroteCount, currentCount)
                     Single.just(res)
-                        .delay(3, TimeUnit.SECONDS)
+                        .delay(2, TimeUnit.SECONDS)
                 }
             }
             else -> {
-                return if (currentIndex == 1) {
-                    res[0] = currentCount.toString()
-                    res[1] = (wroteCount - currentCount).toString()
-                    res[2] = wroteCount.toString()
+                return if (currentIndex == FIRST_INDEX) {
+                    res = setCalculatedVal(currentCount, wroteCount - currentCount, wroteCount)
                     Single.just(res)
-                        .delay(3, TimeUnit.SECONDS)
+                        .delay(2, TimeUnit.SECONDS)
                 } else {
-                    res[0] = (wroteCount - currentCount).toString()
-                    res[1] = currentCount.toString()
-                    res[2] = wroteCount.toString()
+                    res = setCalculatedVal(wroteCount - currentCount, currentCount, wroteCount)
                     Single.just(res)
-                        .delay(3, TimeUnit.SECONDS)
+                        .delay(2, TimeUnit.SECONDS)
                 }
             }
         }
     }
+
+    private fun setCalculatedVal(firstCount: Int, secondCount: Int, thirdCount: Int)
+            = mutableListOf(firstCount.toString(), secondCount.toString(), thirdCount.toString())
 }

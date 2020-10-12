@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.kpfu.itis.thirdcoursehomeworks.service.CalculationService
-import com.kpfu.itis.thirdcoursehomeworks.service.Constans.FIRST_COUNT_INDEX
-import com.kpfu.itis.thirdcoursehomeworks.service.Constans.SECOND_COUNT_INDEX
-import com.kpfu.itis.thirdcoursehomeworks.service.Constans.THIRD_COUNT_INDEX
+import com.kpfu.itis.thirdcoursehomeworks.service.Constans.FIRST_INDEX
+import com.kpfu.itis.thirdcoursehomeworks.service.Constans.SECOND_INDEX
+import com.kpfu.itis.thirdcoursehomeworks.service.Constans.THIRD_INDEX
 import com.kpfu.itis.thirdcoursehomeworks.side_effects.CountSideEffect
 import com.kpfu.itis.thirdcoursehomeworks.store.MainActivityAction
 import com.kpfu.itis.thirdcoursehomeworks.store.MainActivityState
@@ -28,33 +28,27 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(::render)
         firstNumber.doAfterTextChanged { input ->
-            if(secondNumber.text.toString() != "" || thirdNumber.text.toString() != "") {
-                calculateValue(input.toString(), FIRST_COUNT_INDEX)
-            }
+            calculateValue(input.toString(), FIRST_INDEX)
         }
         secondNumber.doAfterTextChanged { input ->
-            if (firstNumber.text.toString() != "" || thirdNumber.text.toString() != ""){
-                calculateValue(input.toString(), SECOND_COUNT_INDEX)
-            }
+            calculateValue(input.toString(), SECOND_INDEX)
         }
         thirdNumber.doAfterTextChanged { input ->
-            if(firstNumber.text.toString() != "" || secondNumber.text.toString() != "") {
-                calculateValue(input.toString(), THIRD_COUNT_INDEX)
-            }
+            calculateValue(input.toString(), THIRD_INDEX)
         }
     }
 
     private fun render(state: MainActivityState) {
         state.counts?.let {
             TAG = TAG_SYSTEM
-            if (firstNumber.text.toString() != it[0]) {
-                firstNumber.setText(it[0])
+            if (firstNumber.text.toString() != it[FIRST_INDEX] && it[FIRST_INDEX] != "") {
+                firstNumber.setText(it[FIRST_INDEX])
             }
-            if (secondNumber.text.toString() != it[1]) {
-                secondNumber.setText(it[1])
+            if (secondNumber.text.toString() != it[SECOND_INDEX] && it[SECOND_INDEX] != "") {
+                secondNumber.setText(it[SECOND_INDEX])
             }
-            if (thirdNumber.text.toString() != it[2]) {
-                thirdNumber.setText(it[2])
+            if (thirdNumber.text.toString() != it[THIRD_INDEX] && it[THIRD_INDEX] != "") {
+                thirdNumber.setText(it[THIRD_INDEX])
             }
             TAG = TAG_EMPTY
         }
@@ -62,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateValue(wroteCount: String, index: Int) {
-        if(TAG != TAG_SYSTEM && wroteCount != "" && wroteCount != "-"){
+        if (TAG != TAG_SYSTEM && wroteCount != "" && wroteCount != "-") {
             store.actionRelay.onNext(MainActivityAction.CountWrote(wroteCount, index))
         }
     }

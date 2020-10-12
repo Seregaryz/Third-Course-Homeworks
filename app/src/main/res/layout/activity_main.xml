@@ -13,29 +13,30 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent"
        android:inputType="number"
+       android:textSize="20sp"
        app:layout_constraintEnd_toStartOf="@+id/tvPlus"
        app:layout_constraintBottom_toTopOf="@+id/tvEquality"
-       android:hint="Edit first val" />
+       android:hint="@string/et_FirstCount" />
 
     <TextView
         android:id="@+id/tvPlus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40sp"
-
-        app:layout_constraintStart_toEndOf="@+id/firstNumber"
-        app:layout_constraintEnd_toStartOf="@+id/secondNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/tvEquality"
-        android:text="+"
+        android:text="@string/tv_Plus"
         />
 
     <EditText
         android:id="@+id/secondNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Edit second val"
+        android:hint="@string/et_SecondCount"
         android:inputType="number"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/tvPlus"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/tvEquality"
@@ -46,7 +47,7 @@
         android:id="@+id/tvEquality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="="
+        android:text="@string/tv_Equality"
         android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +59,10 @@
         android:id="@+id/thirdNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Edit third val"
+        android:hint="@string/et_ThirdCount"
         android:inputType="number"
+        android:textSize="20sp"
+        android:layout_marginBottom="64dp"
         app:layout_constraintTop_toBottomOf="@+id/tvEquality"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

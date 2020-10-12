@@ -12,7 +12,9 @@ class CountSideEffect(
     private val service: CalculationService,
 ): MainActivitySideEffect {
 
-    private var currentIndex: Int = 0
+    private var preCurrentIndex: Int = -1
+    private var preCurrentValue: Int = 0
+    private var currentIndex: Int = -1
     private var currentValue: Int = 0
 
     override fun invoke(
@@ -31,6 +33,12 @@ class CountSideEffect(
     private fun calculateAndUpdate(wroteCount: Int, index: Int): Single<MutableList<String>>{
         val mCurrentValue = currentValue
         val mCurrentIndex = currentIndex
+        if(index == currentIndex){
+            currentValue = wroteCount
+            return service.calculateValue(wroteCount, index, preCurrentValue, preCurrentIndex)
+        }
+        preCurrentIndex = currentIndex
+        preCurrentValue = currentValue
         currentValue = wroteCount
         currentIndex = index
         return service.calculateValue(wroteCount, index, mCurrentValue, mCurrentIndex)

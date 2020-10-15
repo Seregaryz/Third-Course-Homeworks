@@ -30,17 +30,17 @@ class CountSideEffect(
             }
     }
 
-    private fun calculateAndUpdate(wroteCount: Int, index: Int): Single<MutableList<String>>{
+    private fun calculateAndUpdate(wroteCount: Int, wroteIndex: Int): Single<MutableList<String>>{
+        if(wroteIndex == currentIndex){
+            currentValue = wroteCount
+            return service.calculateValue(wroteCount, wroteIndex, preCurrentValue, preCurrentIndex)
+        }
         val mCurrentValue = currentValue
         val mCurrentIndex = currentIndex
-        if(index == currentIndex){
-            currentValue = wroteCount
-            return service.calculateValue(wroteCount, index, preCurrentValue, preCurrentIndex)
-        }
         preCurrentIndex = currentIndex
         preCurrentValue = currentValue
         currentValue = wroteCount
-        currentIndex = index
-        return service.calculateValue(wroteCount, index, mCurrentValue, mCurrentIndex)
+        currentIndex = wroteIndex
+        return service.calculateValue(wroteCount, wroteIndex, mCurrentValue, mCurrentIndex)
     }
 }

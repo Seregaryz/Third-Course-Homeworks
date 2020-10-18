@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ThirdCourseHomeworks</string>
+    <string name="btn_show_text">Show/hide</string>
+    <string name="btn_spin_text">Tap to spin</string>
 </resources>

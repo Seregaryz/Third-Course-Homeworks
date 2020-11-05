@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    app:layoutDescription="@xml/activity_main_scene"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -60,8 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity=""
             android:background="?attr/colorPrimary"
-            android:textColor="@color/colorPrimaryText"
-            android:text="@string/btn_change_theme" />
+            android:text="@string/btn_change_theme"
+            android:textColor="@color/colorPrimaryText" />
 
         <LinearLayout
             android:layout_width="185dp"
@@ -78,6 +79,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/firstLine"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorPrimaryLight"
@@ -88,6 +90,132 @@
         app:layout_constraintTop_toBottomOf="@+id/backspace">
 
         <LinearLayout
+            android:id="@+id/extraLines"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/button10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onNumberButtonClick"
+                    android:text="10"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/button100"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onNumberButtonClick"
+                    android:text="100"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/button1000"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onNumberButtonClick"
+                    android:text="1000"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/button00"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onOperatorClick"
+                    android:text="00"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="32sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/button-1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onNumberButtonClick"
+                    android:text="-1"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/button-10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onNumberButtonClick"
+                    android:text="-10"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/button-100"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onNumberButtonClick"
+                    android:text="-100"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/buttonPercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onOperatorClick"
+                    android:text="%"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="32sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/swipeLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="8dp">
+
+            <View
+                android:layout_width="32dp"
+                android:layout_height="16dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/zeroLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -138,6 +266,7 @@
                 android:textSize="32sp" />
 
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -296,4 +425,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -12,35 +12,34 @@ class CountSideEffect(
     private val service: CalculationService,
 ): MainActivitySideEffect {
 
-    private var preCurrentIndex: Int = -1
-    private var preCurrentValue: Int = 0
-    private var currentIndex: Int = -1
-    private var currentValue: Int = 0
-
     override fun invoke(
         actions: Observable<MainActivityAction>,
         state: StateAccessor<MainActivityState>
     ): Observable<out MainActivityAction> {
         return actions.ofType<MainActivityAction.CountWrote>()
             .switchMap{ action ->
-                calculateAndUpdate(action.wroteCount.toInt(), action.index)
-                    .map<MainActivityAction> { MainActivityAction.CountCalculationFinished(it)}
+                calculateAndUpdate(action.wroteCount, action.index, state())
+                    .map<MainActivityAction> { calculatedValues -> MainActivityAction.CalculationFinished(
+                        calculatedValues[0],
+                        calculatedValues[1],
+                        calculatedValues[2]
+                    )}
                     .toObservable()
                     .startWith(MainActivityAction.CalculationStarted)
             }
     }
 
-    private fun calculateAndUpdate(wroteCount: Int, wroteIndex: Int): Single<MutableList<String>>{
-        if(wroteIndex == currentIndex){
-            currentValue = wroteCount
-            return service.calculateValue(wroteCount, wroteIndex, preCurrentValue, preCurrentIndex)
+    private fun calculateAndUpdate(wroteCount: Int?, wroteIndex: Int, state: MainActivityState): Single<MutableList<Int?>>{
+        when (wroteIndex) {
+            1 -> state.firstCount = wroteCount
+            2 -> state.secondCount = wroteCount
+            3 -> state.thirdCount = wroteCount
         }
-        val mCurrentValue = currentValue
-        val mCurrentIndex = currentIndex
-        preCurrentIndex = currentIndex
-        preCurrentValue = currentValue
-        currentValue = wroteCount
-        currentIndex = wroteIndex
-        return service.calculateValue(wroteCount, wroteIndex, mCurrentValue, mCurrentIndex)
+        if(wroteIndex == state.lastIndex){
+            return service.calculateValue(state)
+        }
+        state.preLastIndex = state.lastIndex
+        state.lastIndex = wroteIndex
+        return service.calculateValue(state)
     }
 }

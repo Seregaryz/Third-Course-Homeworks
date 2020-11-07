@@ -2,6 +2,9 @@ package com.kpfu.itis.thirdcoursehomeworks.store
 
 data class MainActivityState(
     val isLoading: Boolean = false,
-    val counts: MutableList<String>? = null,
-    val lastEnteredField: Int = 0
+    var firstCount: Int? = null,
+    var secondCount: Int? = null,
+    var thirdCount: Int? = null,
+    var lastIndex: Int = 0,
+    var preLastIndex: Int = 0
 )

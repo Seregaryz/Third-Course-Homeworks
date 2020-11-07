@@ -39,25 +39,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun render(state: MainActivityState) {
-        state.counts?.let {
-            TAG = TAG_SYSTEM
-            if (firstNumber.text.toString() != it[FIRST_INDEX] && it[FIRST_INDEX] != "") {
-                firstNumber.setText(it[FIRST_INDEX])
+        TAG = TAG_SYSTEM
+        state.firstCount?.let {
+            if (firstNumber.text.toString() != it.toString()) {
+                firstNumber.setText(it.toString())
             }
-            if (secondNumber.text.toString() != it[SECOND_INDEX] && it[SECOND_INDEX] != "") {
-                secondNumber.setText(it[SECOND_INDEX])
-            }
-            if (thirdNumber.text.toString() != it[THIRD_INDEX] && it[THIRD_INDEX] != "") {
-                thirdNumber.setText(it[THIRD_INDEX])
-            }
-            TAG = TAG_EMPTY
         }
+        state.secondCount?.let {
+            if (secondNumber.text.toString() != it.toString()) {
+                secondNumber.setText(it.toString())
+            }
+        }
+        state.thirdCount?.let {
+            if (thirdNumber.text.toString() != it.toString()) {
+                thirdNumber.setText(it.toString())
+            }
+        }
+        TAG = TAG_EMPTY
         progressBar.isVisible = state.isLoading
     }
 
     private fun calculateValue(wroteCount: String, index: Int) {
         if (TAG != TAG_SYSTEM && wroteCount != "" && wroteCount != "-") {
-            store.actionRelay.onNext(MainActivityAction.CountWrote(wroteCount, index))
+            store.actionRelay.onNext(MainActivityAction.CountWrote(wroteCount.toInt(), index))
         }
     }
 

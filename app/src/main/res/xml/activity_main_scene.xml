@@ -4,18 +4,93 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@id/extraLines"
-            android:layout_width="match_parent"
+            android:id="@+id/button10"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="vertical" />
+            android:background="@android:color/transparent"
+            android:onClick="onNumberButtonClick"
+            android:text="10"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="32sp"
+            android:paddingVertical="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_button_backspace"
+            app:layout_constraintEnd_toStartOf="@id/button100"
+            app:layout_constraintBottom_toTopOf="@id/swipeLine"/>
+        <Constraint
+            android:id="@+id/button100"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingVertical="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="onNumberButtonClick"
+            android:text="100"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/button10"
+            app:layout_constraintEnd_toStartOf="@id/button1000"
+            app:layout_constraintTop_toBottomOf="@id/img_button_backspace"
+            app:layout_constraintBottom_toTopOf="@id/swipeLine"/>
+        <Constraint
+            android:id="@+id/button1000"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingVertical="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="onNumberButtonClick"
+            android:text="1000"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/button100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_button_backspace"
+            app:layout_constraintBottom_toTopOf="@id/swipeLine"/>
+
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@id/extraLines"
-            android:layout_width="match_parent"
-            android:layout_height="128dp"
-            android:orientation="vertical" />
+            android:id="@+id/button10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:onClick="onNumberButtonClick"
+            android:text="10"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="32sp"
+            android:paddingVertical="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_button_backspace"
+            app:layout_constraintEnd_toStartOf="@id/button100"
+            app:layout_constraintBottom_toTopOf="@id/swipeLine"/>
+        <Constraint
+            android:id="@+id/button100"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="onNumberButtonClick"
+            android:text="100"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/button10"
+            app:layout_constraintEnd_toStartOf="@id/button1000"
+            app:layout_constraintTop_toBottomOf="@id/img_button_backspace"
+            app:layout_constraintBottom_toTopOf="@id/swipeLine" />
+        <Constraint
+            android:id="@+id/button1000"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:background="@android:color/transparent"
+            android:onClick="onNumberButtonClick"
+            android:text="1000"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/button100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_button_backspace"
+            app:layout_constraintBottom_toTopOf="@id/swipeLine"/>
     </ConstraintSet>
 
     <Transition
@@ -27,7 +102,7 @@
             app:touchAnchorId="@id/swipeLine"
             app:touchAnchorSide="middle"
             app:dragDirection="dragUp"
-            app:touchRegionId="@id/swipeLine"/>
+            app:touchRegionId="@id/swipeLine"/>0
 
     </Transition>
 
